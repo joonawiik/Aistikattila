@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class ActivateMultiDisplays : MonoBehaviour
 {
+    private void Awake()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("ScreenActivation");
+
+        if (objects.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
-        for (int i = 1; i < Display.displays.Length; i++)
+        foreach (var disp in Display.displays)
         {
-            Display.displays[i].Activate();
+            disp.Activate(disp.systemWidth, disp.systemHeight, 60);
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
 
