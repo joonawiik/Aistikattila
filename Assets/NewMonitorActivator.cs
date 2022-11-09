@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder(-100)]
-public class MultiMonitor : MonoBehaviour
+public class NewMonitorActivator : MonoBehaviour
 {
     int monitor_count;
 
@@ -18,6 +17,5 @@ public class MultiMonitor : MonoBehaviour
         }
 
         Debug.Log("monitor_count:" + monitor_count);
-
     }
 }
