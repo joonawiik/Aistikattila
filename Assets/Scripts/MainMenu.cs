@@ -5,6 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public enum MenuState { Main, Manager, New };
+    public MenuState currentMenu;
+
+    public GameObject mainMenu;
+    public GameObject managerMenu; 
+    public GameObject newMenu; 
+
+    void Awake()
+    {
+        currentMenu = MenuState.Main;
+    }
+
+    void Update()
+    {
+    	switch (currentMenu)
+	{
+	    case MenuState.Main:
+		mainMenu.SetActive(true);
+		managerMenu.SetActive(false);
+		newMenu.SetActive(false);
+    		break;
+
+	    case MenuState.Manager:
+		mainMenu.SetActive(false);
+		managerMenu.SetActive(true);
+		newMenu.SetActive(false);
+    		break;
+
+	    case MenuState.New:
+		mainMenu.SetActive(false);
+		managerMenu.SetActive(false);
+		newMenu.SetActive(true);
+    		break;
+	}
+    } 
+
+    // When opening scenery manager menu
+    public void OpenManagerMenu()
+    {
+	currentMenu = MenuState.Manager;
+        Debug.Log("Scenery Manager opened.");
+    }
+
+    // When opening new scenery menu
+    public void OpenNewSceneryMenu()
+    {
+	currentMenu = MenuState.New;
+        Debug.Log("Menu for adding new sceneries opened.");
+    }
+
+
     // Play, or as we call it, launch
     public void LaunchForest()
     {
