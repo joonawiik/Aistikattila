@@ -1,0 +1,59 @@
+ManifestFileVersion: 0
+CRC: 241527566
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8b7ff904caf92f75dcc1facf9fe16fd5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 22a4571f486950e0d577163a4552abc9
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 61e6dd6b9881b43f88f2e5223fea2f63, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 62765ac7f66cf44899755bc405093314, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 124
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 196
+  Script: {instanceID: 0}
+- Class: 258
+  Script: {instanceID: 0}
+- Class: 850595691
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/MountainScenery.unity
+Dependencies: []

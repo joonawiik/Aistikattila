@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3520540110
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: scenery/mountain
+      Dependencies: {}
