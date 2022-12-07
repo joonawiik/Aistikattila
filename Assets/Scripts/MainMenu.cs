@@ -39,7 +39,13 @@ public class MainMenu : MonoBehaviour
 		newMenu.SetActive(true);
     		break;
 	}
-    } 
+    }
+
+    public void OpenMainMenu()
+    {
+        currentMenu = MenuState.Main;
+        Debug.Log("Main Menu opened.");
+    }
 
     // When opening scenery manager menu
     public void OpenManagerMenu()
