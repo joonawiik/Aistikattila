@@ -61,6 +61,8 @@ public class AddNewScenery : MonoBehaviour
         //Debug.Log(inputtedName);
         //Debug.Log(inputtedDesc);
 
+
+
         sceneDictionary.Add(sceneDictionary.Count + 1, sceneName);
         FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
         Debug.Log("saved, dictionary count: " + sceneDictionary.Count);
