@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
     public enum MenuState { Main, Manager, New };
     public MenuState currentMenu;
 
@@ -81,6 +80,7 @@ public class MainMenu : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +0);
         Debug.Log("Sea Scene unfortunately not implemented yet.");
     }
+
     // Quit
     public void Quit()
     {

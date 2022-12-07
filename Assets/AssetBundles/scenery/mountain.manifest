@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 241527566
+CRC: 2942959133
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8b7ff904caf92f75dcc1facf9fe16fd5
+    Hash: 318a9b11e81b0ef6b87303a466c81f8f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 22a4571f486950e0d577163a4552abc9
@@ -55,5 +55,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Scenes/NewSceneTest/NewSceneTest.unity
 - Assets/Scenes/MountainScenery.unity
 Dependencies: []

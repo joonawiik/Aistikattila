@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 3520540110
+CRC: 2952642414
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: scenery/mountain
+      Name: scenery/test
       Dependencies: {}
