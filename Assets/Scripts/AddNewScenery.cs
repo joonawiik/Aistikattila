@@ -10,9 +10,6 @@ using SFB;
 public class AddNewScenery : MonoBehaviour
 {
 
-    // Dictionary that includes all existing scenes (with individual ids). Is called to create library view
-    public Dictionary<int, string> sceneDictionary;
-
     public AssetBundle bundle;
     private string[] bundlePaths;
 
@@ -22,13 +19,7 @@ public class AddNewScenery : MonoBehaviour
     public InputField nameInput;
     public InputField descriptionInput;
 
-    void Start()
-    {
-        sceneDictionary = new Dictionary<int, string>();
-        sceneDictionary.Add(sceneDictionary.Count + 1, "ForestScenery");
-        sceneDictionary.Add(sceneDictionary.Count + 1, "MountainScenery");
-        Debug.Log("started, dictionary count: " + sceneDictionary.Count);
-    }
+    public DictionaryScript sceneDictionary;
 
     // Called upon clicking 'Choose Scenery File', opens file browser popup
     public void OpenFileBrowser()
@@ -63,8 +54,8 @@ public class AddNewScenery : MonoBehaviour
 
 
 
-        sceneDictionary.Add(sceneDictionary.Count + 1, sceneName);
+        sceneDictionary.addItem(sceneDictionary.getCount() + 1, sceneName);
         FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
-        Debug.Log("saved, dictionary count: " + sceneDictionary.Count);
+        Debug.Log("saved, dictionary count: " + sceneDictionary.getCount());
     }
 }
