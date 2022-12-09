@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject managerMenu; 
-    public GameObject newMenu; 
+    public GameObject newMenu;
 
     void Awake()
     {
@@ -50,14 +50,15 @@ public class MainMenu : MonoBehaviour
     // When opening scenery manager menu
     public void OpenManagerMenu()
     {
-	currentMenu = MenuState.Manager;
+        //sceneryPanel.updateSceneryList();
+        currentMenu = MenuState.Manager;
         Debug.Log("Scenery Manager opened.");
     }
 
     // When opening new scenery menu
     public void OpenNewSceneryMenu()
     {
-	currentMenu = MenuState.New;
+	    currentMenu = MenuState.New;
         Debug.Log("Menu for adding new sceneries opened.");
     }
 

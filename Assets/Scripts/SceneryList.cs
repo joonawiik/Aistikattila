@@ -11,8 +11,12 @@ public class SceneryList : MonoBehaviour
     public GameObject SceneryListPanel;
     public DictionaryScript dictionary;
 
-    // Use this for initialization
     void Start()
+    {
+        updateSceneryList();
+    }
+
+    public void updateSceneryList()
     {
         Debug.Log("started, dictionary count: " + dictionary.getCount());
         Dictionary<int, string> copy = dictionary.getDic();
@@ -28,10 +32,6 @@ public class SceneryList : MonoBehaviour
             clone.SetActive(true);
             clone.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = dictionary.getName(i + 1);
         }
-    }
-
-    public void updateSceneryList()
-    {
 
         //Dictionary<int, string> dic = AddNewScenery.sceneDictionary;
 
@@ -42,7 +42,7 @@ public class SceneryList : MonoBehaviour
         //    GameObject newButton = new GameObject();
         //    newButton.name = "ButtonName"; //Optional
         //    newButton.AddComponent<Button>();
-            //button_list.Add(newButton);
+        //button_list.Add(newButton);
 
     }
 
