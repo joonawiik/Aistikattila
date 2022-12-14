@@ -46,8 +46,8 @@ public class SceneryList : MonoBehaviour
 
     }
 
-    public void deleteScenery()
+    public void deleteScenery(int id)
     {
-
+        dictionary.deleteItem(id);
     }
 }

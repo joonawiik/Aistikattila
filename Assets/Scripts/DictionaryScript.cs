@@ -11,8 +11,9 @@ public class DictionaryScript : MonoBehaviour
     void Start()
     {
         sceneDictionary = new Dictionary<int, string>();
-        sceneDictionary.Add(sceneDictionary.Count + 1, "ForestScenery");
-        sceneDictionary.Add(sceneDictionary.Count + 1, "MountainScenery");
+        sceneDictionary.Add(sceneDictionary.Count + 1, "Forest Scenery");
+        sceneDictionary.Add(sceneDictionary.Count + 1, "Mountain Scenery");
+
     }
 
     public int getCount()
@@ -27,11 +28,18 @@ public class DictionaryScript : MonoBehaviour
 
     public void addItem(int id, string name)
     {
+        Debug.Log("Adding scenery: " + name);
         sceneDictionary.Add(id, name);
     }
 
     public string getName(int id)
     {
         return sceneDictionary[id];
+    }
+
+    public void deleteItem(int id)
+    {
+        Debug.Log("Removing scenery: " + sceneDictionary[id]);
+        sceneDictionary.Remove(id);
     }
 }

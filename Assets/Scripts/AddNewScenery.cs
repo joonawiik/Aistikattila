@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using SFB;
+using TMPro;
 
 public class AddNewScenery : MonoBehaviour
 {
@@ -16,8 +17,7 @@ public class AddNewScenery : MonoBehaviour
     private string[] scenePaths;
     public string sceneName;
 
-    public InputField nameInput;
-    public InputField descriptionInput;
+    public GameObject nameInput;
 
     public DictionaryScript sceneDictionary;
 
@@ -37,7 +37,6 @@ public class AddNewScenery : MonoBehaviour
 
         scenePaths = bundle.GetAllScenePaths();
         Debug.Log(scenePaths[0]);
-
         sceneName = Path.GetFileNameWithoutExtension(scenePaths[0]);
         Debug.Log(sceneName);
         
@@ -52,10 +51,8 @@ public class AddNewScenery : MonoBehaviour
         //Debug.Log(inputtedName);
         //Debug.Log(inputtedDesc);
 
-
-
-        sceneDictionary.addItem(sceneDictionary.getCount() + 1, sceneName);
-        FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
+        sceneDictionary.addItem(sceneDictionary.getCount() + 1, nameInput.GetComponent<TMP_InputField>().text);
+        //FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
         Debug.Log("saved, dictionary count: " + sceneDictionary.getCount());
     }
 }

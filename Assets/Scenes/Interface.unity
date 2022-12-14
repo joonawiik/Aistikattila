@@ -291,7 +291,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1122,7 +1122,7 @@ Transform:
   - {fileID: 166006376}
   - {fileID: 1817662913}
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311635670
 GameObject:
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   cloneObject: {fileID: 733696175}
   textObject: {fileID: 1529936609}
   SceneryListPanel: {fileID: 1817662912}
-  dictionary: {fileID: 1817662917}
+  dictionary: {fileID: 1106077990}
 --- !u!1 &405518317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,7 +2189,7 @@ Transform:
   - {fileID: 427891028}
   - {fileID: 880212731}
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &815979475
 GameObject:
@@ -2917,7 +2917,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3608,12 +3608,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1106077991}
   - {fileID: 134216266}
   - {fileID: 1601305635}
   - {fileID: 2110041983}
   - {fileID: 295448324}
   - {fileID: 775725696}
-  - {fileID: 1106077991}
   m_Father: {fileID: 311635671}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -1, z: 0}
@@ -3992,7 +3992,7 @@ RectTransform:
   m_Children:
   - {fileID: 1137318712}
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4251,7 +4251,6 @@ GameObject:
   - component: {fileID: 1817662913}
   - component: {fileID: 1817662916}
   - component: {fileID: 1817662915}
-  - component: {fileID: 1817662917}
   - component: {fileID: 1817662918}
   m_Layer: 0
   m_Name: SceneryList Panel
@@ -4319,18 +4318,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817662912}
   m_CullTransparentMesh: 1
---- !u!114 &1817662917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817662912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01a940d60a47f4c7d858ab8554035425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1817662918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4828,7 +4815,7 @@ RectTransform:
   - {fileID: 815979476}
   - {fileID: 501317064}
   m_Father: {fileID: 1455364653}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
