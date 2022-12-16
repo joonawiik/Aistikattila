@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class SceneryList : MonoBehaviour
 {
-    public Dictionary<int, string> dic;
+    public List<string> dic;
     public GameObject cloneObject;
     public GameObject textObject;
     public GameObject SceneryListPanel;
+    public SceneryList libraryList;
     public DictionaryScript dictionary;
     public GameObject emptyText;
     public List<GameObject> clones;
@@ -27,9 +28,10 @@ public class SceneryList : MonoBehaviour
         {
             Destroy(clone);
         }
+        clones.Clear();
 
         Debug.Log("started, dictionary count: " + dictionary.getCount());
-        Dictionary<int, string> copy = dictionary.getDic();        
+        List<string> copy = dictionary.getDic();
 
         for (int i = 0; i < dictionary.getCount(); i++)
         {
@@ -38,7 +40,7 @@ public class SceneryList : MonoBehaviour
             // list for scenery manager menu
             if (emptyText == null)
             {
-                vector = new Vector3(cloneObject.transform.position.x, -(i * 30f) + 120, 0);
+                vector = new Vector3(cloneObject.transform.position.x, -(i * 30f) + 130, 0);
             }
             // list for library menu that doesn't show the pre-made sceneries & has a text when empty
             else
@@ -58,18 +60,24 @@ public class SceneryList : MonoBehaviour
 
             // instantiates a separate clone object for each scenery in dictionary
             GameObject clone =
-                Instantiate(cloneObject, vector,
-                cloneObject.transform.rotation,
-                cloneObject.transform.parent);
+            Instantiate(cloneObject, vector,
+            cloneObject.transform.rotation,
+            cloneObject.transform.parent);
             clone.transform.parent = transform;
             clone.SetActive(true);
-            clone.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = dictionary.getName(i + 1);
+            clone.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = dictionary.getName(i);
+            // removes delete button the two premade sceneries
+            if (i == 0 || i == 1) { clone.transform.GetChild(1).gameObject.SetActive(false); }
             clones.Add(clone);
         }
     }
 
-    public void deleteScenery(int id)
+    public void deleteScenery(GameObject deletableClone)
     {
-        dictionary.deleteItem(id);
+        string name = deletableClone.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        Debug.Log(name);
+        dictionary.getDic().Remove(name);
+        updateSceneryList();
+        libraryList.updateSceneryList();
     }
 }

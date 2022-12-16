@@ -47,8 +47,9 @@ public class AddNewScenery : MonoBehaviour
     public void SaveNewScene()
     {
 
-        sceneDictionary.addItem(sceneDictionary.getCount() + 1, nameInput.GetComponent<TMP_InputField>().text);
+        sceneDictionary.addItem(nameInput.GetComponent<TMP_InputField>().text);
         //FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
         Debug.Log("saved, dictionary count: " + sceneDictionary.getCount());
+        nameInput.GetComponent<TMP_InputField>().text = "Scenery Name...";
     }
 }
