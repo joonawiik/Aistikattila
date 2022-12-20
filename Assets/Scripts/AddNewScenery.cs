@@ -18,6 +18,7 @@ public class AddNewScenery : MonoBehaviour
     public string sceneName;
 
     public GameObject nameInput;
+    public GameObject descriptionInput;
 
     public DictionaryScript sceneDictionary;
 
@@ -42,6 +43,13 @@ public class AddNewScenery : MonoBehaviour
         
         //SceneManager.LoadScene(sceneName);
     }
+
+    // Called upon writing something in the Description box
+    public void Calculate()
+    {
+        Debug.Log("Count:" + nameInput.GetComponent<TMP_InputField>().text);
+    }
+
 
     // Called upon clicking 'Save'
     public void SaveNewScene()
