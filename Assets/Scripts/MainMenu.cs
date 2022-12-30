@@ -106,12 +106,4 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quitting happened.");
     }
-
-    public void ReturnToMainMenu()
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
-        SceneManager.LoadScene("Interface");
-        Display.displays[0].Activate();
-        Debug.Log("Returned to main menu interface.");
-    }
 }
