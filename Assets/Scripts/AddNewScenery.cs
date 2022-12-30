@@ -47,7 +47,7 @@ public class AddNewScenery : MonoBehaviour
     // Called upon writing something in the Description box
     public void Calculate()
     {
-        Debug.Log("Count:" + nameInput.GetComponent<TMP_InputField>().text);
+        Debug.Log("Count:" + GameObject.Find("Description InputField").GetComponent<TMP_InputField>().text);
     }
 
 
@@ -58,6 +58,5 @@ public class AddNewScenery : MonoBehaviour
         sceneDictionary.addItem(nameInput.GetComponent<TMP_InputField>().text);
         //FileUtil.CopyFileOrDirectory(scenePaths[0], "Assets/Scenes/" + sceneName + ".unity");
         Debug.Log("saved, dictionary count: " + sceneDictionary.getCount());
-        nameInput.GetComponent<TMP_InputField>().text = "Scenery Name...";
     }
 }
