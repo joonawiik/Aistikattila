@@ -40,7 +40,7 @@ public class SceneryList : MonoBehaviour
             // list for scenery manager menu
             if (emptyText == null)
             {
-                vector = new Vector3(cloneObject.transform.position.x, -(i * 30f) + 130, 0);
+                vector = new Vector3(cloneObject.transform.position.x, -(i * 30f) + 270, 0);
             }
             // list for library menu that doesn't show the pre-made sceneries & has a text when empty
             else
