@@ -81,8 +81,8 @@ public class DayNightSwitchManager : MonoBehaviour
     //Called when 'Night' is selected
     public void DayToNight()
     {
-        UpdateLighting(12 / 24f);
         TimeOfDay = 24f;
+        UpdateLighting(TimeOfDay / 24f);
         if(particleRoot != null)
         {
             particleRoot.SetActive(true);
@@ -92,13 +92,12 @@ public class DayNightSwitchManager : MonoBehaviour
     //Called when 'Day' is selected
     public void NightToDay()
     {
-        TimeOfDay = 0f;
-        UpdateLighting(24 / 24f);
+        TimeOfDay = 12f;
+        UpdateLighting(TimeOfDay / 24f);
         if(particleRoot != null)
         {
             particleRoot.SetActive(false);
         }
-        TimeOfDay = 12f;
     }
 
 
