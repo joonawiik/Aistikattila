@@ -13,8 +13,9 @@ public class DayNightSwitchManager : MonoBehaviour
     //Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     //[SerializeField] private float AnimationDuration = 3.0f;
-    
 
+    [SerializeField, Range(0, 1)] private float CloudMovementSpeed = 0.08f;
+    
     private void Update()
     {
         if (Preset == null)
@@ -22,15 +23,19 @@ public class DayNightSwitchManager : MonoBehaviour
 
         if (Application.isPlaying)
         {
-            // Animation, not needed
-            // TimeOfDay += Time.deltaTime;
-            // TimeOfDay %= 24; //Modulus to ensure always between 0-24
-            // UpdateLighting(TimeOfDay / 24f);
+            SkyboxMovement();
         }
         else
         {
             UpdateLighting(TimeOfDay / 24f);
         }
+    }
+
+    private void SkyboxMovement()
+    {
+        TimeOfDay += Time.deltaTime;
+        TimeOfDay %= 24;
+        RenderSettings.skybox.SetFloat("_Rotation", Mathf.Lerp(0, 360, TimeOfDay / 24f * CloudMovementSpeed));
     }
 
     private void UpdateLighting(float timePercent)
