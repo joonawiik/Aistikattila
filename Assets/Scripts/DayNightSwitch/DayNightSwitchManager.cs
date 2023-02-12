@@ -5,6 +5,8 @@ using System.Collections.Generic;
 [ExecuteAlways]
 public class DayNightSwitchManager : MonoBehaviour
 {
+    public static DayNightSwitchManager Instance {private set; get;}
+
     //Scene References
     [SerializeField] private DayNightSwitchPreset Preset;
     [SerializeField] private Material Skybox;
@@ -14,8 +16,6 @@ public class DayNightSwitchManager : MonoBehaviour
     [SerializeField] private GameObject cloudsRoot;
     private List<Material> cloudMaterials;
     
-    // [SerializeField] private Material mat;
-
     //Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     //[SerializeField] private float AnimationDuration = 3.0f;
@@ -111,6 +111,12 @@ public class DayNightSwitchManager : MonoBehaviour
         if(particleRoot != null)
         {
             particleRoot.SetActive(true);
+            
+            // If it rains, do not active fireflies
+            if(SettingManager.Instance.weather == SettingManager.Weather.Rainy)
+            {
+                particleRoot.SetActive(false);
+            }
         }
         SetCloudColor(TimeOfDay / 24f);
     }
@@ -204,7 +210,17 @@ public class DayNightSwitchManager : MonoBehaviour
         // TODO: check interface parameter
         TimeOfDay = 12f;
         OnValidate();
-        // DayToNight();
+    }
+
+    private void Awake()
+    {
+        //singleton setup
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
     }
 
     private void onAwake()
