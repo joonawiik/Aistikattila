@@ -10,6 +10,7 @@ public class DayNightSwitchPreset : ScriptableObject
     public SkyboxSetting skybox;
     public DirectionalLightSetting directionalLight;
     public FogSetting fog;
+    public CloudSetting cloud;
 
     void onGUI(){}
 }
@@ -47,4 +48,10 @@ public class FogSetting
     public Gradient color;
     public float midDayDensity = 0.0f;
     public float midNightDensity = 0.01f;
+}
+
+[Serializable]
+public class CloudSetting
+{
+    public Gradient color;
 }

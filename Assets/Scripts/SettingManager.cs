@@ -18,5 +18,7 @@ public class SettingManager : MonoBehaviour
         
     }
 
-    private void CloudMovement(){}
+    private void CloudMovement()
+    {
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System;
+using System.Collections.Generic;
 
 [ExecuteAlways]
 public class DayNightSwitchManager : MonoBehaviour
@@ -10,6 +11,11 @@ public class DayNightSwitchManager : MonoBehaviour
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingSettings lightingSetting;
     [SerializeField] private GameObject particleRoot;
+    [SerializeField] private GameObject cloudsRoot;
+    private List<Material> cloudMaterials;
+    
+    // [SerializeField] private Material mat;
+
     //Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     //[SerializeField] private float AnimationDuration = 3.0f;
@@ -23,6 +29,9 @@ public class DayNightSwitchManager : MonoBehaviour
 
         if (Application.isPlaying)
         {
+            // TimeOfDay += Time.deltaTime;
+            // TimeOfDay %= 24;
+            // UpdateLighting(TimeOfDay / 24f);
             SkyboxMovement();
         }
         else
@@ -36,6 +45,14 @@ public class DayNightSwitchManager : MonoBehaviour
         TimeOfDay += Time.deltaTime;
         TimeOfDay %= 24;
         RenderSettings.skybox.SetFloat("_Rotation", Mathf.Lerp(0, 360, TimeOfDay / 24f * CloudMovementSpeed));
+    }
+
+    private void SetCloudColor(float timePercent)
+    {
+        foreach(var mat in cloudMaterials)
+        {
+            mat.SetColor("_CloudColor", Preset.cloud.color.Evaluate(timePercent));
+        }
     }
 
     private void UpdateLighting(float timePercent)
@@ -81,7 +98,10 @@ public class DayNightSwitchManager : MonoBehaviour
             }
         }
 
+        // Moving Clouds color
+        SetCloudColor(timePercent);
     }
+
 
     //Called when 'Night' is selected
     public void DayToNight()
@@ -92,6 +112,7 @@ public class DayNightSwitchManager : MonoBehaviour
         {
             particleRoot.SetActive(true);
         }
+        SetCloudColor(TimeOfDay / 24f);
     }
 
     //Called when 'Day' is selected
@@ -103,6 +124,7 @@ public class DayNightSwitchManager : MonoBehaviour
         {
             particleRoot.SetActive(false);
         }
+        SetCloudColor(TimeOfDay / 24f);
     }
 
 
@@ -162,6 +184,19 @@ public class DayNightSwitchManager : MonoBehaviour
             var s = ps.shape;
             s.enabled = false;
         }
+    
+        //Make Sure the cloud material is not missing.
+        if(cloudsRoot != null)
+        {
+            cloudMaterials = new List<Material>();
+            foreach(var renderer in cloudsRoot.GetComponentsInChildren<Renderer>())
+            {
+                if(!cloudMaterials.Contains(renderer.sharedMaterial))
+                {
+                    cloudMaterials.Add(renderer.sharedMaterial);
+                }
+            }
+        }
     }
 
     private void Start()
@@ -169,6 +204,7 @@ public class DayNightSwitchManager : MonoBehaviour
         // TODO: check interface parameter
         TimeOfDay = 12f;
         OnValidate();
+        // DayToNight();
     }
 
     private void onAwake()
