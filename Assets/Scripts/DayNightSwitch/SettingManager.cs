@@ -2,60 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingManager : MonoBehaviour
+public static class SettingDataManager
 {
     public enum TimeOfDay {Day, Night};
     public enum Weather {Sunny, Rainy};
     public enum Sound {ON, Off};
-    public static SettingManager Instance {private set; get;}
 
-    public TimeOfDay timeOfDay;
-    public Weather weather;
-    public Sound sound;
+    private static TimeOfDay timeOfDay { get; set; }
+    private static Weather weather { get; set; }
+    private static Sound sound { get; set; }
 
-    private void Awake()
+    public static bool IsRainy()
     {
-        //singleton setup
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-            return;
-        }
-        Instance = this;
+        return (weather == Weather.Rainy);
     }
 
-    public void AdjustScene(TimeOfDay t, Weather w, Sound s)
+    public static void PassData(TimeOfDay t, Weather w, Sound s)
     {
         timeOfDay = t;
         weather = w;
         sound = s;
+    }
 
-        switch (t)
+    public static void AdjustScene()
+    {
+        switch (timeOfDay)
         {
             case TimeOfDay.Day: DayNightSwitchManager.Instance.NightToDay(); break;
             case TimeOfDay.Night: DayNightSwitchManager.Instance.DayToNight(); break;
             default: break;
         }
 
-        switch(w)
+        switch(weather)
         {
             case Weather.Sunny: RainEffect.Instance.RainToSun();break;
             case Weather.Rainy: RainEffect.Instance.SunToRain();break;
             default: break;
         }
 
-        switch(s)
+        switch(sound)
         {
             // TODO: ..
             default: break;
         }
     }
 
+}
+
+
+public class SettingManager : MonoBehaviour
+{
     private void Start()
     {
-        SettingManager.Instance.AdjustScene(
-            SettingManager.TimeOfDay.Night, 
-            SettingManager.Weather.Rainy,
-            SettingManager.Sound.ON);
+        SettingDataManager.AdjustScene();
     }
 }

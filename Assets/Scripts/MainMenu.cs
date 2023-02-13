@@ -66,6 +66,13 @@ public class MainMenu : MonoBehaviour
     // Play, or as we call it, launch
     public void LaunchForest()
     {
+        // Just an example of launching with adjustment data, you can delete this once you get it
+        SettingDataManager.PassData(
+            SettingDataManager.TimeOfDay.Night,
+            SettingDataManager.Weather.Rainy,
+            SettingDataManager.Sound.ON
+        );
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
         Debug.Log("Forest Scene Loaded.");
     }

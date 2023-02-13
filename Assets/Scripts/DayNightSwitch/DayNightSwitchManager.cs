@@ -111,9 +111,9 @@ public class DayNightSwitchManager : MonoBehaviour
         if(particleRoot != null)
         {
             particleRoot.SetActive(true);
-            
+                        
             // If it rains, do not active fireflies
-            if(SettingManager.Instance.weather == SettingManager.Weather.Rainy)
+            if(SettingDataManager.IsRainy())
             {
                 particleRoot.SetActive(false);
             }
