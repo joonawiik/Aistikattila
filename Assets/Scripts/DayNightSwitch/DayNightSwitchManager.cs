@@ -42,9 +42,9 @@ public class DayNightSwitchManager : MonoBehaviour
 
     private void SkyboxMovement()
     {
-        TimeOfDay += Time.deltaTime;
+        TimeOfDay += Time.deltaTime * CloudMovementSpeed;
         TimeOfDay %= 24;
-        RenderSettings.skybox.SetFloat("_Rotation", Mathf.Lerp(0, 360, TimeOfDay / 24f * CloudMovementSpeed));
+        RenderSettings.skybox.SetFloat("_Rotation", Mathf.Lerp(0, 360, TimeOfDay / 24f));
     }
 
     private void SetCloudColor(float timePercent)
