@@ -10,8 +10,8 @@ to 192.168.0.50. If this were to change, fix the old address in the
 beginning of this script.
 """
 import argparse
-import json
 import netrc
+import sys
 
 import requests as req
 
@@ -27,7 +27,7 @@ def parse_args():
         "the Aistikattila room, UTU."
     )
     parser.add_argument(
-        "scheme-name",
+        "--scheme-name",
         type=str,
         help="The name of the lighting scheme used. The possible options can be seen in"
         "the Helvar USee UI.",
@@ -55,13 +55,37 @@ def main():
         "Connection": "close",
     }
 
+    scheme_option = args.scheme_name
+    if not scheme_option:
+        try:
+            with open("scheme_option.txt") as in_file:
+                scheme_option = in_file.readline().strip()
+                if not scheme_option:
+                    print(
+                        "No scheme name option argument passed, and the content of scheme_option.txt "
+                        "file is empty. Exiting!"
+                    )
+                    sys.exit(1)
+        except FileNotFoundError:
+            print(
+                "No scheme name option argument passed, and no scheme_option.txt file found. Exiting!"
+            )
+            sys.exit(1)
+
     with req.Session() as s:
-        res = s.get(
-            f"http://{helvar_ip}{login_url}",
-            headers=headers,
-            verify=False,
-        )
-        res.raise_for_status()
+        try:
+            res = s.get(
+                f"http://{helvar_ip}{login_url}",
+                headers=headers,
+                verify=False,
+                timeout=3,
+            )
+            res.raise_for_status()
+        except req.exceptions.ConnectTimeout:
+            print(
+                "Could not connect to the Helvar lighting interface in time. Exiting!"
+            )
+            sys.exit(2)
 
         # extract the hidden __VIEW value from the HTML dump
         soup = BeautifulSoup(res.text, "html.parser")
@@ -81,10 +105,20 @@ def main():
 
         # Adapt the headers
         headers["Referer"] = f"http://{helvar_ip}{login_url}"
-        res = s.post(
-            f"http://{helvar_ip}{login_url}", headers=headers, data=data, verify=False
-        )
-        res.raise_for_status()
+        try:
+            res = s.post(
+                f"http://{helvar_ip}{login_url}",
+                headers=headers,
+                data=data,
+                verify=False,
+                timeout=3,
+            )
+            res.raise_for_status()
+        except req.exceptions.ConnectTimeout:
+            print(
+                "Could not connect to the Helvar lighting interface in time. Exiting!"
+            )
+            sys.exit(2)
 
         # Adapt some more headers
         headers["Referer"] = f"http://{helvar_ip}{scenes_url}"
@@ -95,14 +129,22 @@ def main():
         # By default, we will be using the populated 100 group
         group_id = "100"
         params = {"group": group_id}
-        res = s.get(
-            f"http://{helvar_ip}{scenes_url}/GetScenes",
-            headers=headers,
-            data=data,
-            params=params,
-            verify=False,
-        )
-        res.raise_for_status()
+        try:
+            res = s.get(
+                f"http://{helvar_ip}{scenes_url}/GetScenes",
+                headers=headers,
+                data=data,
+                params=params,
+                verify=False,
+                timeout=3,
+            )
+            res.raise_for_status()
+        except req.exceptions.ConnectTimeout:
+            print(
+                "Could not connect to the Helvar lighting interface in time. Exiting!"
+            )
+            sys.exit(2)
+
         lights_json_data = res.json()
         lighting_options = {}
 
@@ -117,32 +159,37 @@ def main():
             if not scene_data["Visible"]:
                 continue
 
-            lighting_options[scene_data["Name"]] = {
-                "possible_names": [scene_data["Name"]],
+            lighting_options[scene_data["Name"].lower()] = {
+                "possible_names": [scene_data["Name"].lower()],
                 "id": scene_data["SceneId"]["BlockAndSceneNo"],
                 "group": scene_data["SceneId"]["GroupNo"],
             }
             if scene_data["AlternativeName"]:
-                lighting_options[scene_data["Name"]]["possible_names"].append(
-                    scene_data["AlternativeName"]
+                lighting_options[scene_data["Name"].lower()]["possible_names"].append(
+                    scene_data["AlternativeName"].lower()
                 )
-
-        print(json.dumps(lighting_options, indent=4))
 
         # find a match for the given desired scheme
         for key, data in lighting_options.items():
-            if args.scheme_name not in data["possible_names"]:
+            if scheme_option.lower() not in data["possible_names"]:
                 continue
 
             print(f"Match found for scheme {key} with ID {data['id']}")
             params = {"GroupNo": group_id, "SceneNum": str(data["id"])}
-            res = s.get(
-                f"http://{helvar_ip}{scenes_url}/CallScene",
-                headers=headers,
-                params=params,
-                verify=False,
-            )
-            res.raise_for_status()
+            try:
+                res = s.get(
+                    f"http://{helvar_ip}{scenes_url}/CallScene",
+                    headers=headers,
+                    params=params,
+                    verify=False,
+                    timeout=3,
+                )
+                res.raise_for_status()
+            except req.exceptions.ConnectTimeout:
+                print(
+                    "Could not connect to the Helvar lighting interface in time. Exiting!"
+                )
+                sys.exit(2)
 
 
 if __name__ == "__main__":
