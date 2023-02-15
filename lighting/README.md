@@ -13,8 +13,29 @@ not case-sensitive. Some scene names available at the time of making this docume
 are:
 ### TODO
 ```
+Tilanne 1 (Perustilanne)
+Tilanne 2 or Pinkki
+Tilanne 3 or Sini-punainen
+Tilanne 4 or Spotti
+Tilanne 5 or Joulu
+Tilanne 6 or Aamu-usva
+Tilanne 7 or Hapan vihre\u00e4
+Tilanne 8 or Mets\u00e4
+Tilanne 9 or Art Work
+Tilanne 10 or Keitti\u00f6p\u00e4\u00e4dyn valaistus
+Tilanne 11
+Tilanne 12
 Off
-The rest I have no idea, TODO when in Aistikattila...
+Scene 2.1 or Beige
+Scene 2.2 or Puna-oranssi
+Scene 2.3 or Beige (takasein\u00e4)
+Scene 2.4 or Art Work 2
+Scene 2.5 or Vihre\u00e4 (takasein\u00e4)
+Scene 2.8 or Vihre\u00e4t pallovalaisimet
+Scene 2.9 or Merenalainen maailma
+Scene 2.10 or REMU
+Scene 2.12 or Halloween
+Scene 2.13 or Barcelona
 ```
 
 ### As a standalone script
