@@ -44,10 +44,14 @@ public class AddNewScenery : MonoBehaviour
         //SceneManager.LoadScene(sceneName);
     }
 
-    // Called upon writing something in the Description box
+    // Called upon writing something in the Description field.
+    // The only point is to calculate and show the length of the contents in the Description field.
     public void Calculate()
     {
-        Debug.Log("Count:" + GameObject.Find("Description InputField").GetComponent<TMP_InputField>().text);
+        //Debug.Log("Count:" + GameObject.Find("Description InputField").GetComponent<TMP_InputField>().text);
+        //Debug.Log(GameObject.Find("Description InputField").GetComponent<TMP_InputField>().text.Length);
+        //Debug.Log(GameObject.Find("Add New Scenery Description").GetComponent<TMP_Text>().text);
+        GameObject.Find("Add New Scenery Description").GetComponent<TMP_Text>().text = "Description (" +GameObject.Find("Description InputField").GetComponent<TMP_InputField>().text.Length +"/150)";
     }
 
 
