@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -583,8 +583,7 @@ namespace MultiProjectorWarpSystem
                 renderTexture.Create();
                 targetDisplays.Add(i + firstProjector - 1);
                 camera.targetTexture = renderTexture;
-                camera.targetDisplay = targetDisplays[i];
-            }
+                camera.targetDisplay = targetDisplays[i];            }
 
             //build final render cameras
             GameObject projectionCamera;
