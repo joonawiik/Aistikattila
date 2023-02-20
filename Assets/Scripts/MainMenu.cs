@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+//using UnityEditor.Scripting.Python;
+using UnityEditor;
+using System.IO;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -24,6 +28,13 @@ public class MainMenu : MonoBehaviour
     public ForestWeatherState currentForestWeather;
     public enum ForestSoundState { On, Off };
     public ForestSoundState currentForestSound;
+
+    public SettingDataManager.TimeOfDay parameter1;
+    public SettingDataManager.Weather parameter2;
+    public SettingDataManager.Sound parameter3;
+
+    // For the lighting:
+    public string scriptPath;
 
     void Awake()
     {
@@ -80,28 +91,44 @@ public class MainMenu : MonoBehaviour
     public void LaunchForest()
     {
         // Just an example of launching with adjustment data, you can delete this once you get it
-        SettingDataManager.PassData(
-            SettingDataManager.TimeOfDay.Night,
-            SettingDataManager.Weather.Rainy,
-            SettingDataManager.Sound.ON
-        );
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
-        Debug.Log("Forest Scene Loaded.");
-        Debug.Log(currentForestTimeOfDay);
-        Debug.Log(currentForestWeather);
-        Debug.Log(currentForestSound);
-
-        // If the adjustment box is active, the scene won't be launched
-        if (forestAdjustmentBox.active)
+        // Let's check what is currently chosen and then pass the parameters to the SettingDataManager
+        if (currentForestTimeOfDay == ForestTimeOfDayState.Night)
         {
-            Debug.Log("The forest adjustment box is active, it needs to be closed and the changed settings saved before launching the scene.");
+            parameter1 = SettingDataManager.TimeOfDay.Night;
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
-            Debug.Log("Forest Scene Loaded.");
+            parameter1 = SettingDataManager.TimeOfDay.Day;
         }
+        if (currentForestWeather == ForestWeatherState.Rainy)
+        {
+            parameter2 = SettingDataManager.Weather.Rainy;
+        }
+        else
+        {
+            parameter2 = SettingDataManager.Weather.Sunny;
+        }
+        if (currentForestSound == ForestSoundState.Off)
+        {
+            parameter3 = SettingDataManager.Sound.Off;
+        }
+        else
+        {
+            parameter3 = SettingDataManager.Sound.On;
+        }  
+        SettingDataManager.PassData(
+            // 1 = Time of day, 2 = Weather, 3 = Sound
+            parameter1,
+            parameter2,
+            parameter3
+        );
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        
+        // For the lighting:
+        //scriptPath = Path.Combine(Application.dataPath,"python_req_test.py");
+        //PythonRunner.RunFile(scriptPath);
+        Debug.Log("Forest Scene loaded with these parameters: "+parameter1+", "+parameter2+", "+parameter3);
     }
 
     public void LaunchMountain()
@@ -175,10 +202,10 @@ public class MainMenu : MonoBehaviour
         forestAdjustmentBox.SetActive(false);
     }
 
-    // Quit
+    // Called upon clicking the Quit button in the upper right corner
     public void Quit()
     {
-        Application.Quit();
         Debug.Log("Quitting happened.");
+        Application.Quit();
     }
 }

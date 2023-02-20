@@ -6,9 +6,9 @@ public static class SettingDataManager
 {
     public enum TimeOfDay {Day, Night};
     public enum Weather {Sunny, Rainy};
-    public enum Sound {ON, Off};
+    public enum Sound {On, Off};
 
-    private static TimeOfDay timeOfDay { get; set; }
+    public static TimeOfDay timeOfDay { get; set; }
     private static Weather weather { get; set; }
     private static Sound sound { get; set; }
 
