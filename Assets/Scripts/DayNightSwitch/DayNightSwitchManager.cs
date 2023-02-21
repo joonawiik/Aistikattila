@@ -163,7 +163,8 @@ public class DayNightSwitchManager : MonoBehaviour
         // Shadow color only works with MixedLightingMode.Subtractive
         if(lightingSetting != null)
         {
-            lightingSetting.mixedBakeMode = MixedLightingMode.Subtractive;
+            // TODO: this line causes errors in the build & run
+            //lightingSetting.mixedBakeMode = MixedLightingMode.Subtractive;
         }
 
         // Set Environment Lighting Source as 'Color' so that ambient color works
