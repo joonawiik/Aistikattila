@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1444,6 +1444,10 @@ MonoBehaviour:
   currentForestTimeOfDay: 0
   currentForestWeather: 0
   currentForestSound: 0
+  parameter1: 0
+  parameter2: 0
+  parameter3: 0
+  scriptPath: 
 --- !u!114 &311635673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +1468,7 @@ MonoBehaviour:
   dictionary: {fileID: 1106077990}
   emptyText: {fileID: 0}
   clones: []
+  yvalue: 0
 --- !u!1 &374062782
 GameObject:
   m_ObjectHideFlags: 0
@@ -6578,6 +6583,7 @@ MonoBehaviour:
   dictionary: {fileID: 1106077990}
   emptyText: {fileID: 839158289}
   clones: []
+  yvalue: 0
 --- !u!1 &1362085035
 GameObject:
   m_ObjectHideFlags: 0
@@ -8592,6 +8598,7 @@ MonoBehaviour:
   dictionary: {fileID: 1106077990}
   emptyText: {fileID: 0}
   clones: []
+  yvalue: 0
 --- !u!1 &1836577804
 GameObject:
   m_ObjectHideFlags: 0
@@ -9975,19 +9982,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1817662918}
     - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: deleteScenery
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneryList, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 733696175}
+    - target: {fileID: 8253860627657575676, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8253860627657575677, guid: 5bea446a1b50943ecb4c7082002c085d, type: 3}
       propertyPath: m_SizeDelta.y
