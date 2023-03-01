@@ -131,6 +131,12 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Forest Scene loaded with these parameters: "+parameter1+", "+parameter2+", "+parameter3);
     }
 
+    public void LaunchSpace()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +2);
+        Debug.Log("Space Scene loaded.");
+    }
+
     public void LaunchMountain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +2);
