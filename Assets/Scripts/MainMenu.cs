@@ -174,6 +174,32 @@ public class MainMenu : MonoBehaviour
         forestAdjustmentBox.SetActive(true);
     }
 
+    public void LauchAddedScenery(GameObject lauchableClone) 
+    {
+        string name = lauchableClone.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text;
+        Scene[] scenes = SceneManager.GetAllScenes();
+        List<string> names = new List<string>();
+
+        foreach (Scene sc in scenes) {
+            names.Add(sc.name);
+        }
+
+        try {
+            if (names.Contains(name))
+            {
+                SceneManager.LoadScene(name);
+            }
+            else
+            {
+                lauchableClone.transform.GetChild(2).gameObject.SetActive(true);
+                Debug.Log("No assetbundle scenery added");
+            }
+        }
+        catch {
+            Debug.Log("Unexpected error loading the scenery");
+        }
+    }
+
     // Called upon clicking the Apply button in the Forest adjustment box
     public void StopAdjustingForest()
     {
