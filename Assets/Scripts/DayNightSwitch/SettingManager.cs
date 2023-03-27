@@ -28,21 +28,34 @@ public static class SettingDataManager
     {
         switch (timeOfDay)
         {
-            case TimeOfDay.Day: DayNightSwitchManager.Instance.NightToDay(); break;
-            case TimeOfDay.Night: DayNightSwitchManager.Instance.DayToNight(); break;
+            case TimeOfDay.Day:
+                DayNightSwitchManager.Instance.NightToDay();
+                AudioManager.Instance.SunnyAudio();
+                break;
+            case TimeOfDay.Night:
+                DayNightSwitchManager.Instance.DayToNight();
+                AudioManager.Instance.NightAudio();
+                break;
             default: break;
         }
 
         switch(weather)
         {
-            case Weather.Sunny: RainEffect.Instance.RainToSun();break;
-            case Weather.Rainy: RainEffect.Instance.SunToRain();break;
+            case Weather.Sunny:
+                RainEffect.Instance.RainToSun();
+                AudioManager.Instance.SunnyAudio();
+                break;
+            case Weather.Rainy:
+                RainEffect.Instance.SunToRain();
+                AudioManager.Instance.RainAudio();
+                break;
             default: break;
         }
 
         switch(sound)
         {
-            // TODO: ..
+            case Sound.On: AudioManager.Instance.AudioOn();break;
+            case Sound.Off: AudioManager.Instance.AudioOff();break;
             default: break;
         }
     }
