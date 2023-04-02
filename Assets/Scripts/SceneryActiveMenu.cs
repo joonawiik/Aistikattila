@@ -12,4 +12,10 @@ public class SceneryActiveMenu : MonoBehaviour
         Display.displays[0].Activate();
         Debug.Log("Returned to main menu interface.");
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            ReturnToMainMenu();
+    }
 }
