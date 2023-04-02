@@ -12,8 +12,8 @@ public class DayNightSwitchManager : MonoBehaviour
     [SerializeField] private Material Skybox;
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingSettings lightingSetting;
-    [SerializeField] private GameObject particleRoot;
-    [SerializeField] private GameObject cloudsRoot;
+    private GameObject fireflies;
+    private GameObject cloudsRoot;
     private List<Material> cloudMaterials;
     
     //Variables
@@ -90,9 +90,9 @@ public class DayNightSwitchManager : MonoBehaviour
         }
 
         // particles
-        if(particleRoot != null && (timePercent <= 0.2 || timePercent >= 0.8))
+        if(fireflies != null && (timePercent <= 0.2 || timePercent >= 0.8))
         {
-            foreach(var child in particleRoot.GetComponentsInChildren<ParticleSystem>())
+            foreach(var child in fireflies.GetComponentsInChildren<ParticleSystem>())
             {
                 //..
             }
@@ -108,14 +108,14 @@ public class DayNightSwitchManager : MonoBehaviour
     {
         TimeOfDay = 24f;
         UpdateLighting(TimeOfDay / 24f);
-        if(particleRoot != null)
+        if(fireflies != null)
         {
-            particleRoot.SetActive(true);
+            fireflies.SetActive(true);
                         
             // If it rains, do not active fireflies
             if(SettingDataManager.IsRainy())
             {
-                particleRoot.SetActive(false);
+                fireflies.SetActive(false);
             }
         }
         SetCloudColor(TimeOfDay / 24f);
@@ -126,9 +126,9 @@ public class DayNightSwitchManager : MonoBehaviour
     {
         TimeOfDay = 12f;
         UpdateLighting(TimeOfDay / 24f);
-        if(particleRoot != null)
+        if(fireflies != null)
         {
-            particleRoot.SetActive(false);
+            fireflies.SetActive(false);
         }
         SetCloudColor(TimeOfDay / 24f);
     }
@@ -177,12 +177,12 @@ public class DayNightSwitchManager : MonoBehaviour
         }
 
         //Make Sure the particle Root has a ParticleSystem component so as to activate all particles when focused.
-        if (particleRoot != null)
+        if (fireflies != null)
         {
-            var ps = particleRoot.GetComponent<ParticleSystem>();
+            var ps = fireflies.GetComponent<ParticleSystem>();
             if(ps == null)
             {
-                ps= particleRoot.AddComponent<ParticleSystem>();
+                ps= fireflies.AddComponent<ParticleSystem>();
             }
             
             // make sure the emission/shape is disabled so that it does not lag the compiling
@@ -191,19 +191,7 @@ public class DayNightSwitchManager : MonoBehaviour
             var s = ps.shape;
             s.enabled = false;
         }
-    
-        //Make Sure the cloud material is not missing.
-        if(cloudsRoot != null)
-        {
-            cloudMaterials = new List<Material>();
-            foreach(var renderer in cloudsRoot.GetComponentsInChildren<Renderer>())
-            {
-                if(!cloudMaterials.Contains(renderer.sharedMaterial))
-                {
-                    cloudMaterials.Add(renderer.sharedMaterial);
-                }
-            }
-        }
+
     }
 
     private void Start()
@@ -222,6 +210,48 @@ public class DayNightSwitchManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        
+        // Instantiate particle effects
+        if(fireflies == null)
+        {
+            var gameObj = GameObject.Find("Fireflies");
+            if(gameObj != null)
+            {
+                fireflies = gameObj;
+            }
+            else
+            {
+                fireflies = Instantiate (Resources.Load ("Prefabs/Fireflies")) as GameObject;
+                fireflies.name = "Fireflies";
+            }
+        }
+        if(cloudsRoot == null)
+        {
+            var gameObj = GameObject.Find("Clouds");
+            if(gameObj != null)
+            {
+                cloudsRoot = gameObj;
+            }
+            else
+            {
+                cloudsRoot = Instantiate (Resources.Load ("Prefabs/Clouds")) as GameObject;
+                cloudsRoot.name = "Clouds";
+            }
+        }
+        
+        //Make Sure the cloud material is not missing.
+        if(cloudsRoot != null)
+        {
+            cloudMaterials = new List<Material>();
+            foreach(var renderer in cloudsRoot.GetComponentsInChildren<Renderer>())
+            {
+                if(!cloudMaterials.Contains(renderer.sharedMaterial))
+                {
+                    cloudMaterials.Add(renderer.sharedMaterial);
+                }
+            }
+        }
     }
 
     private void onAwake()

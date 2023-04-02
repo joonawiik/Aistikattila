@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RainEffect : MonoBehaviour
 {
-    [SerializeField] private GameObject rain;
+    private GameObject rain;
 
     public static RainEffect Instance;
 
@@ -17,6 +17,21 @@ public class RainEffect : MonoBehaviour
             return;
         }
         Instance = this;
+
+        // Instantiate rain effects
+        if(rain == null)
+        {
+            var gameObj = GameObject.Find("Raindrops");
+            if(gameObj != null)
+            {
+                rain = gameObj;
+            }
+            else
+            {
+                rain = Instantiate (Resources.Load ("Prefabs/Raindrops")) as GameObject;
+                rain.name = "Raindrops";
+            }
+        }
     }
 
     public void RainToSun()
