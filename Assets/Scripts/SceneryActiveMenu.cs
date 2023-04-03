@@ -8,8 +8,9 @@ public class SceneryActiveMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
-        SceneManager.LoadScene("Interface");
-        Display.displays[0].Activate();
+        //SceneManager.LoadScene("Interface");
+        //Display.displays[0].Activate();
+        Application.Quit();
         Debug.Log("Returned to main menu interface.");
     }
 
