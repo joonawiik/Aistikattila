@@ -12,6 +12,11 @@ public static class SettingDataManager
     private static Weather weather { get; set; }
     private static Sound sound { get; set; }
 
+    public static bool IsDay()
+    {
+        return (timeOfDay == TimeOfDay.Day);
+    }
+
     public static bool IsRainy()
     {
         return (weather == Weather.Rainy);
@@ -30,11 +35,9 @@ public static class SettingDataManager
         {
             case TimeOfDay.Day:
                 DayNightSwitchManager.Instance.NightToDay();
-                AudioManager.Instance.SunnyAudio();
                 break;
             case TimeOfDay.Night:
                 DayNightSwitchManager.Instance.DayToNight();
-                AudioManager.Instance.NightAudio();
                 break;
             default: break;
         }
@@ -43,7 +46,11 @@ public static class SettingDataManager
         {
             case Weather.Sunny:
                 RainEffect.Instance.RainToSun();
-                AudioManager.Instance.SunnyAudio();
+                if (IsDay()) {
+                    AudioManager.Instance.SunnyAudio();
+                } else {
+                    AudioManager.Instance.NightAudio();
+                }
                 break;
             case Weather.Rainy:
                 RainEffect.Instance.SunToRain();

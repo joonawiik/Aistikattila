@@ -36,15 +36,18 @@ public class AudioManager : MonoBehaviour
     public void SunnyAudio() {
         AudioSource source = audio.GetComponent<AudioSource>();
         source.clip = sunny;
+        source.Play();
     }
 
     public void RainAudio() {
         AudioSource source = audio.GetComponent<AudioSource>();
         source.clip = rainy;
+        source.Play();
     }
 
     public void NightAudio() {
         AudioSource source = audio.GetComponent<AudioSource>();
         source.clip = night;
+        source.Play();
     }
 }
